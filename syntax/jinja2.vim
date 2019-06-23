@@ -69,14 +69,19 @@ syn match jinjaStatement containedin=jinjaTagBlock contained /\<with\(out\)\?\s\
 if !exists("did_jinja_syn_inits")
   command -nargs=+ HiLink hi def link <args>
 
+  " 2019-06-22 - play with coloring to make dict variables stand out
+  " changes copied from diff of jinja.vim in https://github.com/chase/vim-ansible-yaml
   HiLink jinjaPunctuation jinjaOperator
-  HiLink jinjaAttribute jinjaVariable
+  HiLink jinjaAttribute Identifier
+  "HiLink jinjaAttribute jinjaVariable
   HiLink jinjaFunction jinjaFilter
 
   HiLink jinjaTagDelim jinjaTagBlock
-  HiLink jinjaVarDelim jinjaVarBlock
+  HiLink jinjaVarDelim PreProc
+  "HiLink jinjaVarDelim jinjaVarBlock
   HiLink jinjaCommentDelim jinjaComment
-  HiLink jinjaRawDelim jinja
+  HiLink jinjaRawDelim jinjaVarDelim
+  "HiLink jinjaRawDelim jinja
 
   HiLink jinjaSpecial Special
   HiLink jinjaOperator Normal
@@ -86,7 +91,8 @@ if !exists("did_jinja_syn_inits")
   HiLink jinjaStatement Statement
   HiLink jinjaFilter Function
   HiLink jinjaBlockName Function
-  HiLink jinjaVariable Identifier
+  HiLink jinjaVariable Normal
+  "HiLink jinjaVariable Identifier
   HiLink jinjaString Constant
   HiLink jinjaNumber Constant
   HiLink jinjaComment Comment
